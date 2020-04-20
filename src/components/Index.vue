@@ -16,7 +16,7 @@
       <!--      侧边栏布局-->
       <el-aside width="200px">
 
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#333744" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#333744" text-color="#fff" active-text-color="#ffd04b">
 
           <el-menu-item index="1">
             <i class="el-icon-menu"></i>
@@ -48,6 +48,14 @@
 
 
     export default {
+        created() {
+          this.getMenuList()
+        },
+        methods: {
+            getMenuList(){
+              this.$http.get('/getMemuList')
+            },
+        },
         data() {
             const item = {
                 date: '2016-05-02',
@@ -127,29 +135,3 @@
   }
 </style>
 
-
-
-<style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
-</style>
-
-<script>
-    export default {
-        data() {
-            return {
-                isCollapse: true
-            };
-        },
-        methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
-        }
-    }
-</script>
